@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+body {
+    font-family: 'VT323';
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    }
+.App-logo {
+    width:9vw;
+    height:9vw;
+    margin-bottom:-100px;
+    animation: 6s appear forwards ease-in;
+  }
+.App-header {
+    background-color: #282c34;
+    height:220px;
+    width:100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top:0;
+  }
+.welcome{
+    font-weight: 500; 
+    color: rgb(18, 97, 18);
+    animation: 5s marginTop forwards ease-in;
+    animation: 5s fontSize forwards ease-in;
+    display: block;
+    font-family: 'VT323', cursive;
+    margin-bottom: -50px;
+}
+.title{
+    text-decoration: none; 
+    animation: 5s fontSizeBig forwards ease-in;
+    color: rgb(57, 123, 57);
+    text-shadow: 5px 2px 5px black;
+    width: 100%;
+    margin-top:-200px;
+    font-family: 'VT323', cursive;
+}
+.wrapper{
+    width:675px;
+    height:400px;
+    padding: 4px 3px 4px 3px;
+    margin-top:25vh;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(45deg, dimgrey, lightgrey 80%);
+    border-radius: 20px;
+    position:relative;
+}
+.red{
+    border-radius: 50%;
+    width:12px;
+    height: 12px;
+    position:absolute;
+    top: 4px;
+    left: 18px;
+    box-shadow: 0.5px 0.5px 0.5px 1px black;
+    background-color: red;
+}
+.red:hover, .yellow:hover, .green:hover{
+    box-shadow: none;
+}
+.yellow{
+    border-radius: 50%;
+    width:12px;
+    height: 12px;
+    position:absolute;
+    top: 4px;
+    left: 40px;
+    box-shadow: 0.5px 0.5px 0.5px 1px black;
+    background-color: rgb(245, 205, 43);
+}
+.green{
+    border-radius: 50%;
+    width:12px;
+    height: 12px;
+    position:absolute;
+    top: 4px;
+    left: 62px;
+    box-shadow: 0.5px 0.5px 0.5px 1px black;
+    background-color: rgb(5, 188, 5);
+}
+@keyframes marginTop{
+    from {
+      margin-top:30%
+    }
+    to {
+      margin-top:8%
+    }
+}
+  @keyframes fontSize{
+    from {
+      font-size: 4em
+    }
+    to {
+      font-size: 1em
+    }
+}
+  @keyframes fontSizeBig{
+    from {
+      font-size: 1em;
+      opacity: 0;
+    }
+    to {
+      font-size: 5em;
+      opacity: 1;
+    }
+}
+@keyframes appear{
+    0% {
+      opacity: 0;
+    }
+    70% {opacity:0}
+    100% {
+      opacity: 1;
+    }
+}

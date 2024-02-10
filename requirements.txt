@@ -1,0 +1,19 @@
+bidict==0.21.2
+    # via python-socketio
+click==8.0.1
+    # via flask
+flask==2.1.2
+    # via flask-socketio
+flask-socketio==5.1.1
+    # via -r requirements.in
+itsdangerous==2.0.1
+    # via flask
+jinja2==3.0.1
+    # via flask
+markupsafe==2.0.1
+    # via jinja2
+python-engineio==4.2.1
+    # via python-socketio
+python-socketio==5.4.0
+    # via flask-socketio
+colorama==0.4.6

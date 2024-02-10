@@ -1,0 +1,69 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Text-based console game assignment from the Code Nation Introduction to Coding course." />
+    <meta property="og:title" content="Close Encounters of a Python Kind">
+    <meta property="og:image" content="./images/logo.png">
+    <meta property="og:url" content="https://alien.njtd.xyz/">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="Text-based console game assignment from the Code Nation Introduction to Coding course.">
+    <link rel="apple-touch-icon" href="./images/favicon.ico" type="image/ico" />
+    <link rel="icon" href="./images/favicon.ico" />
+    <link rel="stylesheet" href="https://unpkg.com/xterm@4.11.0/css/xterm.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Close Encounters of a Python Kind</title>
+  </head>
+  <body>
+    <header class="App-header">
+      <h1 class="welcome">NJ Codes proudly presents...</h1>
+      <img src='./images/logo.gif' class="App-logo" alt="logo" />
+      <h2 class="title">Close Encounters of a Python Kind</h2>
+    </header>
+    <div class="wrapper">
+        <div class="red"></div>
+        <div class="yellow"></div>
+        <div class="green"></div>
+        <span style="font-size: small">status:
+            <span style="font-size: small" id="status">connecting...</span>
+        </span>
+        <div style="width:650px; height: 375px">
+            <div style="width: 100%; height: 100%" id="terminal"></div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/xterm@4.11.0/lib/xterm.js"></script>
+    <script src="https://unpkg.com/xterm-addon-fit@0.5.0/lib/xterm-addon-fit.js"></script>
+    <script src="https://unpkg.com/xterm-addon-web-links@0.4.0/lib/xterm-addon-web-links.js"></script>
+    <script src="https://unpkg.com/xterm-addon-search@0.8.0/lib/xterm-addon-search.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.min.js"></script>
+    <script>
+      const term = new Terminal({
+        cursorBlink: true,
+        macOptionIsMeta: true,
+        scrollback: 9999,
+      });
+      const fit = new FitAddon.FitAddon();
+      term.loadAddon(fit);
+      term.open(document.getElementById("terminal"));
+      fit.fit()
+      term.onData((data) => {
+        console.log("browser terminal received new data:", data);
+        socket.emit("pty-input", { input: data });
+      });
+      const socket = io.connect("/pty");
+      const status = document.getElementById("status");
+      socket.on("pty-output", function (data) {
+        term.write(data.output);
+      });
+      socket.on("connect", () => {
+        status.innerHTML =
+          '<span style="background-color: lightgreen;">connected</span>';
+      });
+      socket.on("disconnect", () => {
+        status.innerHTML =
+          '<span style="background-color: #ff0000;">disconnected</span>';
+      });
+    </script>
+  </body>
+</html>
